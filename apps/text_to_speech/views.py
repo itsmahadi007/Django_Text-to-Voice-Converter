@@ -8,6 +8,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
 from apps.text_to_speech.models import TextToSpeechModel
+from apps.text_to_speech.serializers import TextToSpeechModelSerializerDetails
 
 
 # @api_view(["GET"])
@@ -49,8 +50,10 @@ def txt_to_audio_view(request):
         audio_content = ContentFile(audio_array.tobytes())
         text_to_speech_instance.audio.save(unique_filename, audio_content)
 
+        serialize_obj = TextToSpeechModelSerializerDetails(text_to_speech_instance, context={"request": request})
+
         return Response(
-            {"message": "Text converted to audio and saved."},
+            serialize_obj.data,
             status=status.HTTP_201_CREATED
         )
     else:
