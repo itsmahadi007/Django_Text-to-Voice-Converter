@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Black">
+    <option name="executionMode" value="BINARY" />
+    <option name="pathToExecutable" value="/Library/Frameworks/Python.framework/Versions/3.10/bin/black" />
+    <option name="sdkUUID" value="6879001f-5cfe-4786-838e-89ff13490525" />
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10 (text_to_voice)" project-jdk-type="Python SDK" />
+</project>

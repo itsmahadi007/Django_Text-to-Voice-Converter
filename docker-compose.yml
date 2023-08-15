@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  redis:
+    image: redis:5-alpine
+#    platform: linux/amd64
+    command: --port 6391
+    ports:
+      - "6392:6392"
+    expose:
+      - 6392
+    restart: always
+
+  app:
+    #    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - redis
+    command: python manage.py runserver 0.0.0.0:5020
+    #    command: uvicorn backend.asgi:application --reload --host 0.0.0.0 --port 8000
+    #    command: uvicorn pms.asgi:application --ssl-keyfile=/app/vitlous.com.key --ssl-certfile=/app/vitlous.com.cer --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - .:/app/backend
+    #      - /root/.acme.sh/cwp_certs/www.vitlous.com/fullchain.cer:/app/vitlous.com.cer
+    #      - /root/.acme.sh/cwp_certs/www.vitlous.com/www.vitlous.com.key:/app/vitlous.com.key
+    ports:
+      - "5020:5020"
+    env_file:
+      - .env
+    restart: always
+
+
