@@ -7,7 +7,7 @@ Use_Docker = False
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
-if Use_Docker is False:
+if os.environ.get('DJANGO_RUNNING_IN_DOCKER') is None:
     load_dotenv()
 
     # Debug

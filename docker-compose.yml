@@ -4,11 +4,11 @@ services:
   redis:
     image: redis:5-alpine
     #    platform: linux/amd64
-    command: --port 6391
+    command: --port 6393
     ports:
-      - "6392:6392"
+      - "6393:6393"
     expose:
-      - 6392
+      - 6393
     restart: always
 
   app:
