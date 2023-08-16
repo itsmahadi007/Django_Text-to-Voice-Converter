@@ -9,3 +9,6 @@ class TextToSpeechModel(models.Model):
     audio = models.FileField(upload_to='audio/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return "ID: " + str(self.id) + " Text: " + self.text[:20] + "..."

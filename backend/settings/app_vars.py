@@ -5,6 +5,11 @@ from dotenv import load_dotenv
 Use_Docker = False
 # Use_Docker = True
 
+
+# os.environ["SUNO_OFFLOAD_CPU"] = "True"
+# os.environ["SUNO_USE_SMALL_MODELS"] = "True"
+SUNO_USE_SMALL_MODELS = True
+
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
 if os.environ.get('DJANGO_RUNNING_IN_DOCKER') is None:
