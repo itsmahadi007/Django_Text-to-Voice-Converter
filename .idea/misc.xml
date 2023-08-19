@@ -5,5 +5,5 @@
     <option name="pathToExecutable" value="/Library/Frameworks/Python.framework/Versions/3.10/bin/black" />
     <option name="sdkUUID" value="6879001f-5cfe-4786-838e-89ff13490525" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10 (text_to_voice)" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10 (Django_Text-to-Voice-Converter)" project-jdk-type="Python SDK" />
 </project>
