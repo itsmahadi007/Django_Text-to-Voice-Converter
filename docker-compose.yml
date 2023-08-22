@@ -20,13 +20,13 @@ services:
       - DJANGO_RUNNING_IN_DOCKER=true
     depends_on:
       - redis
-    command: python manage.py runserver 0.0.0.0:5020
+    command: python manage.py runserver 0.0.0.0:8000
 
     volumes:
       - .:/app/backend
 
     ports:
-      - "5020:5020"
+      - "8000:8000"
     env_file:
       - .env
     restart: always
