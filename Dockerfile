@@ -1,3 +1,4 @@
+FROM nvidia/cuda:11.0-base
 FROM python:3.10.9
 
 ENV PYTHONUNBUFFERED 1
@@ -10,5 +11,5 @@ RUN pip install -r requirements.txt
 
 
 
-EXPOSE 5020
+EXPOSE 8000
 
