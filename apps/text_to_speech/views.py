@@ -12,36 +12,63 @@ from apps.text_to_speech.models import TextToSpeechModel
 from apps.text_to_speech.serializers import TextToSpeechModelSerializerDetails
 
 
-# @api_view(["GET"])
-# @permission_classes([AllowAny])
-# def txt_to_audio_view(request):
-#     text = request.GET.get("text")
-#     # text_prompt = """
-#     #      Hello, my name is Suno. And, uh — and I like pizza. [laughs]
-#     #      But I also have other interests such as playing tic tac toe.
-#     # """
-#     text_prompt = text
-#     audio_array = generate_audio(text_prompt)
-#
-#     # save audio to disk
-#     write_wav("bark_generation.wav", SAMPLE_RATE, audio_array)
-#
-#     # play text in notebook
-#     Audio(audio_array, rate=SAMPLE_RATE)
-#
-#     return Response(
-#         {"message": "This is an asynchronous view!"}, status=status.HTTP_200_OK
-#     )
+@api_view(["GET"])
+@permission_classes([AllowAny])
+def get_voice_list(request):
+    promot_name_list = [
+        "v2/en_speaker_0",
+        "v2/en_speaker_1",
+        "v2/en_speaker_2",
+        "v2/en_speaker_3",
+        "v2/en_speaker_4",
+        "v2/en_speaker_5",
+        "v2/en_speaker_6",
+        "v2/en_speaker_7",
+        "v2/en_speaker_8",
+        "v2/en_speaker_9",
+    ]
+
+    return Response(
+        promot_name_list,
+        status=status.HTTP_200_OK
+    )
 
 
 @api_view(["POST"])
 @permission_classes([AllowAny])
 def txt_to_audio_view(request):
     text = request.data.get("text")
+    voice = request.data.get("voice", None)
 
     if text:
         text_prompt = text
-        audio_array = generate_audio(text_prompt)
+        if voice is not None:
+            # history_prompt
+            promot_name_list = [
+                "v2/en_speaker_0",
+                "v2/en_speaker_1",
+                "v2/en_speaker_2",
+                "v2/en_speaker_3",
+                "v2/en_speaker_4",
+                "v2/en_speaker_5",
+                "v2/en_speaker_6",
+                "v2/en_speaker_7",
+                "v2/en_speaker_8",
+                "v2/en_speaker_9",
+            ]
+
+            if voice in promot_name_list:
+                audio_array = generate_audio(text_prompt, history_prompt=voice)
+            else:
+                return Response(
+                    {
+                        "message": "voice is not valid. Must be from this list",
+                        "voice_list": promot_name_list,
+                    }
+                )
+
+        else:
+            audio_array = generate_audio(text_prompt)
 
         # Generate a unique filename
         audio_filename = f"{uuid.uuid4().hex[:10]}_generated_audio.wav"
