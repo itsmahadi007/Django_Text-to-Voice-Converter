@@ -8,7 +8,11 @@ License: MIT
 
 
 ```sh
-docker compose build
-docker compose run app python manage.py load_model
+#docker compose build
+#docker compose run app python manage.py load_model
 docker compose up -d
+```
+
+```sh
+docker-compose logs -f app
 ```
