@@ -23,7 +23,7 @@ cryptography==41.0.2
 decorator==5.1.1
 defusedxml==0.7.1
 dj-rest-auth==4.0.1
-Django==4.2.4
+Django==4.2.7
 django-advance-thumbnail==1.0.0
 django-allauth==0.54.0
 django-celery-beat==2.5.0
